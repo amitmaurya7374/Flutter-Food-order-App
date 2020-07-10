@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/models/food_data.dart';
+import 'package:food_app/widgets/foodListView.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-class MainPageScreen extends StatelessWidget {
+class MainPageScreen extends StatefulWidget {
+  @override
+  _MainPageScreenState createState() => _MainPageScreenState();
+}
+
+class _MainPageScreenState extends State<MainPageScreen>
+    with SingleTickerProviderStateMixin {
+  TabController tabController;
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(vsync: this, length: 4);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +47,7 @@ class MainPageScreen extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         ///Note :List can be access by using index value
-                        image: AssetImage(Provider.of<FoodData>(context)
-                            .foodItems[9]
-                            .imagePath),
+                        image: AssetImage('assets/tuxedo.png'),
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -99,80 +109,34 @@ class MainPageScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 15.0,),
+            SizedBox(
+              height: 15.0,
+            ),
             Container(
               height: 200.0,
-              
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                        
-                          height: 175.0,
-                          width: 150.0,
-                          decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      15.0,
-                                    ),
-                                    color: Provider.of<FoodData>(context).foodItems[index].color,
-                                  ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Hero(
-                                tag: Provider.of<FoodData>(context)
-                                    .foodItems[index]
-                                    .name,
-                                child: Container(
-                                  height: 75,
-                                  width: 75.0,
-                                  decoration: BoxDecoration(
-                                color: Colors.white, shape: BoxShape.circle),
-                                  child: Center(
-                                    child: Image.asset(
-                                      Provider.of<FoodData>(context)
-                                          .foodItems[index]
-                                          .imagePath,
-                                      height: 50.0,
-                                      width: 50.0,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 25.0,
-                              ),
-                              Text(
-                                Provider.of<FoodData>(context)
-                                    .foodItems[index]
-                                    .name,
-                                style: GoogleFonts.notoSans(
-                                  fontSize: 17.0,
-                                  color: Color(0xFFDA9551),
-                                ),
-                              ),
-                              Text(
-                                '\$' +
-                                    Provider.of<FoodData>(context)
-                                        .foodItems[index]
-                                        .price
-                                        .toString(),
-                                style: GoogleFonts.notoSans(
-                                  fontSize: 17.0,
-                                  color: Color(0xFFDA9551),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ));
-                },
-                itemCount: Provider.of<FoodData>(context).foodCount,
-              ),
+              child: FoodListView(),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 15.0),
+              child: TabBar(
+                  controller: tabController,
+                  isScrollable: true,
+                  indicatorColor: Colors.transparent,
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.grey.withOpacity(0.5),
+                  labelStyle: GoogleFonts.notoSans(
+                      fontSize: 16.0, fontWeight: FontWeight.w700),
+                  unselectedLabelStyle: GoogleFonts.notoSans(
+                      fontSize: 12.0, fontWeight: FontWeight.w500),
+                  tabs: [
+                    Tab(child: Text('FEATURED')),
+                    Tab(child: Text('COMBO')),
+                    Tab(child: Text('FAVORITES')),
+                    Tab(child: Text('RECOMMENDED')),
+                  ]),
             ),
           ],
         ),
