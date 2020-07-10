@@ -99,13 +99,77 @@ class MainPageScreen extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 15.0,),
             Container(
               height: 200.0,
               
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return FoodTile();
+                  return Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                        
+                          height: 175.0,
+                          width: 150.0,
+                          decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      15.0,
+                                    ),
+                                    color: Provider.of<FoodData>(context).foodItems[index].color,
+                                  ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Hero(
+                                tag: Provider.of<FoodData>(context)
+                                    .foodItems[index]
+                                    .name,
+                                child: Container(
+                                  height: 75,
+                                  width: 75.0,
+                                  decoration: BoxDecoration(
+                                color: Colors.white, shape: BoxShape.circle),
+                                  child: Center(
+                                    child: Image.asset(
+                                      Provider.of<FoodData>(context)
+                                          .foodItems[index]
+                                          .imagePath,
+                                      height: 50.0,
+                                      width: 50.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 25.0,
+                              ),
+                              Text(
+                                Provider.of<FoodData>(context)
+                                    .foodItems[index]
+                                    .name,
+                                style: GoogleFonts.notoSans(
+                                  fontSize: 17.0,
+                                  color: Color(0xFFDA9551),
+                                ),
+                              ),
+                              Text(
+                                '\$' +
+                                    Provider.of<FoodData>(context)
+                                        .foodItems[index]
+                                        .price
+                                        .toString(),
+                                style: GoogleFonts.notoSans(
+                                  fontSize: 17.0,
+                                  color: Color(0xFFDA9551),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ));
                 },
                 itemCount: Provider.of<FoodData>(context).foodCount,
               ),
@@ -114,79 +178,5 @@ class MainPageScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class FoodTile extends StatelessWidget {
-  const FoodTile({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 15.0),
-        child: InkWell(
-          onTap: () {},
-          child: Container(
-          
-            height: 175.0,
-            width: 150.0,
-            decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        15.0,
-                      ),
-                      color: Color(0xFFFFE9C6),
-                    ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Hero(
-                  tag: Provider.of<FoodData>(context)
-                      .foodItems[index]
-                      .name,
-                  child: Container(
-                    height: 75,
-                    width: 75.0,
-                    decoration: BoxDecoration(
-                  color: Colors.white, shape: BoxShape.circle),
-                    child: Center(
-                      child: Image.asset(
-                        Provider.of<FoodData>(context)
-                            .foodItems[index]
-                            .imagePath,
-                        height: 50.0,
-                        width: 50.0,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 25.0,
-                ),
-                Text(
-                  Provider.of<FoodData>(context)
-                      .foodItems[index]
-                      .name,
-                  style: GoogleFonts.notoSans(
-                    fontSize: 17.0,
-                    color: Color(0xFFDA9551),
-                  ),
-                ),
-                Text(
-                  '\$' +
-                      Provider.of<FoodData>(context)
-                          .foodItems[index]
-                          .price
-                          .toString(),
-                  style: GoogleFonts.notoSans(
-                    fontSize: 17.0,
-                    color: Color(0xFFDA9551),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ));
   }
 }
