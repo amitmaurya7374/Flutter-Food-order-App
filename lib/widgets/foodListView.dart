@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/food_data.dart';
+import 'package:food_app/screens/detail_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,19 @@ class FoodListView extends StatelessWidget {
         return Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                final providePath =
+                    Provider.of<FoodData>(context,listen: false).foodItems[index];
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => DetailPage(
+                            imgPath: providePath.imagePath,
+                            foodName: providePath.name,
+                            heroTag: providePath.name,
+                            pricePerItem: providePath.price,
+                          ),),
+                );
+              },
               child: Container(
                 height: 175.0,
                 width: 150.0,

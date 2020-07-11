@@ -16,6 +16,9 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
        home: MainPageScreen(),
+      //  routes: {
+      //    DetailPage.nameRoutes :(context)=>DetailPage(),
+      //  },
       ),
     );
   }

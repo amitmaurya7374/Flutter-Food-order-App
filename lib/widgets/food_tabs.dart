@@ -88,15 +88,21 @@ class FoodTabBar extends StatelessWidget {
                     ),
                   ],
                 ),
-                 FloatingActionButton(
-              heroTag: Provider.of<FoodData>(context).foodItems[index].name,
-              mini: true,
+                 Container(
+                   width: 55.0,
+                   child: RaisedButton(
+              // heroTag: 'btn1',
+              // mini: true,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+              color:  Color(0xFFFE7D6A),
+              elevation: 10.0,
               onPressed: () {},
               child: Center(
                 child: Icon(Icons.add, color: Colors.white)
               ),
-              backgroundColor: Color(0xFFFE7D6A),
-            )
+              // backgroundColor: Color(0xFFFE7D6A),
+            ),
+                 )
               ],
 
             ),
