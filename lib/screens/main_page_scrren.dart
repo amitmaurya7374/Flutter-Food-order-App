@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/widgets/foodListView.dart';
+import 'package:food_app/widgets/food_tabs.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainPageScreen extends StatefulWidget {
@@ -136,8 +137,20 @@ class _MainPageScreenState extends State<MainPageScreen>
                     Tab(child: Text('COMBO')),
                     Tab(child: Text('FAVORITES')),
                     Tab(child: Text('RECOMMENDED')),
-                    
                   ]),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height - 450.0,
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  FoodTabBar(),
+                 
+                  FoodTabBar(),
+                  FoodTabBar(),
+                  FoodTabBar(),
+                ],
+              ),
             ),
           ],
         ),
