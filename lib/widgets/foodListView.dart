@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_app/models/food_data.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class FoodListView extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -17,27 +14,24 @@ class FoodListView extends StatelessWidget {
             child: InkWell(
               onTap: () {},
               child: Container(
-              
                 height: 175.0,
                 width: 150.0,
                 decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            15.0,
-                          ),
-                          color: Provider.of<FoodData>(context).foodItems[index].color,
-                        ),
+                  borderRadius: BorderRadius.circular(
+                    15.0,
+                  ),
+                  color: Provider.of<FoodData>(context).foodItems[index].color,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Hero(
-                      tag: Provider.of<FoodData>(context)
-                          .foodItems[index]
-                          .name,
+                      tag: Provider.of<FoodData>(context).foodItems[index].name,
                       child: Container(
                         height: 75,
                         width: 75.0,
                         decoration: BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
+                            color: Colors.white, shape: BoxShape.circle),
                         child: Center(
                           child: Image.asset(
                             Provider.of<FoodData>(context)
@@ -53,9 +47,7 @@ class FoodListView extends StatelessWidget {
                       height: 25.0,
                     ),
                     Text(
-                      Provider.of<FoodData>(context)
-                          .foodItems[index]
-                          .name,
+                      Provider.of<FoodData>(context).foodItems[index].name,
                       style: GoogleFonts.notoSans(
                         fontSize: 17.0,
                         color: Color(0xFFDA9551),

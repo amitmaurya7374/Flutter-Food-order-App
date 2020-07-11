@@ -136,6 +136,7 @@ class _MainPageScreenState extends State<MainPageScreen>
                     Tab(child: Text('COMBO')),
                     Tab(child: Text('FAVORITES')),
                     Tab(child: Text('RECOMMENDED')),
+                    
                   ]),
             ),
           ],
