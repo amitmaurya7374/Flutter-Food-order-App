@@ -11,6 +11,10 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  var quantity = 1;
+  var netPrice = 0.0;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,21 +136,112 @@ class _DetailPageState extends State<DetailPage> {
                   FloatingIcon(
                     icon: Icons.restore,
                   ),
-                 
                 ],
               ),
             ],
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(
+            height: 10.0,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-
+              Container(
+                height: 70.0,
+                width: 125.0,
+                child: Center(
+                  child: Text(
+                    '\$' + (widget.pricePerItem * quantity).toString(),
+                    style: GoogleFonts.notoSans(
+                      fontSize: 40.0,
+                      color: Color(0xFF5E6166),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 60.0,
+                width: 228.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFFFE7D6A),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      height: 40.0,
+                      width: 110.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.white),
+                      child: Row(
+                        children: <Widget>[
+                          IconButton(
+                              iconSize: 17.0,
+                              icon:
+                                  Icon(Icons.remove, color: Color(0xFFFE7D6A)),
+                              onPressed: () {
+                                adjustQuantity('MINUS');
+                              }),
+                          Text(
+                            quantity.toString(),
+                            style: GoogleFonts.notoSans(
+                                fontSize: 12.0,
+                                color: Color(0xFFFE7D6A),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          IconButton(
+                              iconSize: 17.0,
+                              icon: Icon(Icons.add, color: Color(0xFFFE7D6A)),
+                              onPressed: () {
+                                adjustQuantity('PLUS');
+                              }),
+                        ],
+                      ),),
+                        Text(
+                    'Add to cart',
+                    style: GoogleFonts.notoSans(
+                        fontSize: 15.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  ],
+                ),
+              ),
             ],
           ),
+          Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Text(
+            'FEATURED',
+            style: GoogleFonts.notoSans(
+                fontSize: 16.0, fontWeight: FontWeight.w700),
+          ),
+        ),
         ],
       ),
     );
   }
-}
+     adjustQuantity(pressed) {
+    switch (pressed) {
+      case 'PLUS':
+        setState(() {
+          quantity += 1;
+        });
+        return;
+      case 'MINUS':
+        setState(() {
+          if (quantity != 0) {
+            quantity -= 1;
+          }
+        });
+        return;
+    }
+  }
 
+}
