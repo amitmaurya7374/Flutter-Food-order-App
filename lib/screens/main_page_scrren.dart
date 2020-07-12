@@ -144,11 +144,11 @@ class _MainPageScreenState extends State<MainPageScreen>
               child: TabBarView(
                 controller: tabController,
                 children: [
-                  FoodTabBar(),
+                  FoodTabBar(reverseState: false,),
                  
-                  FoodTabBar(),
-                  FoodTabBar(),
-                  FoodTabBar(),
+                  FoodTabBar(reverseState: false,),
+                  FoodTabBar(reverseState: false,),
+                  FoodTabBar(reverseState: false,),
                 ],
               ),
             ),

@@ -5,10 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class FoodTabBar extends StatelessWidget {
+  final bool reverseState;
+  FoodTabBar({this.reverseState});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
+       reverse: reverseState,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.all( 15.0),

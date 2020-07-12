@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/widgets/floating_icon.dart';
+import 'package:food_app/widgets/food_tabs.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailPage extends StatefulWidget {
@@ -223,6 +224,13 @@ class _DetailPageState extends State<DetailPage> {
                 fontSize: 16.0, fontWeight: FontWeight.w700),
           ),
         ),
+        //ToDo
+        Container(
+              height: MediaQuery.of(context).size.height - 450.0,
+              child: FoodTabBar(
+                reverseState: true,
+              ),
+            ),
         ],
       ),
     );
@@ -236,7 +244,7 @@ class _DetailPageState extends State<DetailPage> {
         return;
       case 'MINUS':
         setState(() {
-          if (quantity != 0) {
+          if (quantity >1) {
             quantity -= 1;
           }
         });
